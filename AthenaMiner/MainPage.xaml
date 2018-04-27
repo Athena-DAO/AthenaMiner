@@ -7,7 +7,43 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <AcrylicBrush x:Key="BackdropBrushMainPage"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="Black"
+                      TintOpacity="0.1"
+                      FallbackColor="Black"
+                      AlwaysUseFallback="False"
+                      />
+    </Page.Resources>
 
-    </Grid>
+    <NavigationView
+        AlwaysShowHeader="False"
+        x:Name="NavView"
+                    ItemInvoked="NavView_ItemInvoked"
+                    Loaded="NavView_Loaded">
+        <NavigationView.MenuItems>
+            <NavigationViewItem x:Uid="Dashboard" Content="Dashboard" Tag="dashboard">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE10F;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem x:Uid="Account" Content="Account" Tag="account">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE910;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox x:Name="ASB" QueryIcon="Find"/>
+        </NavigationView.AutoSuggestBox>
+        
+        <Frame x:Name="ContentFrame">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition/>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+    </NavigationView>
 </Page>

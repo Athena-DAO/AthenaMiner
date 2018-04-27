@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="AthenaMiner.DashboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AthenaMiner"
+    xmlns:viewModels ="using:AthenaMiner.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="ContainerDetailTemplate" x:DataType="viewModels:Container">
+            <StackPanel Margin="5,0,0,0">
+                <TextBlock Text="{x:Bind Name}" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White"/>
+                <TextBlock Text="{x:Bind Description}" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="White"/>
+                <TextBlock Text="{x:Bind TimestapCreated}" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="White"/>
+            </StackPanel>
+        </DataTemplate>
+        <AcrylicBrush x:Key="BackdropBrush"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="Black"
+                      TintOpacity="0.4"
+                      FallbackColor="Black"
+                      AlwaysUseFallback="False"
+                      />
+        <AcrylicBrush x:Key="BackdropBrush1"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="Black"
+                      TintOpacity="0.8"
+                      FallbackColor="Black"
+                      AlwaysUseFallback="False"
+                      />
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Column="0" x:Name="ContainerList" ItemsSource="{x:Bind Containers, Mode=OneWay}" Background="{StaticResource BackdropBrush}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:Container">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind Name}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White"/>
+                        <TextBlock Text="{x:Bind Description}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="White"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ContentPresenter Grid.Column="1"
+                          x:Name="ContainerContentPresenter"
+                          Content="{x:Bind ContainerList.SelectedItem, Mode=OneWay}"
+                          ContentTemplate="{StaticResource ContainerDetailTemplate}"
+                          Background="{StaticResource BackdropBrush1}"
+                          >
+            <ContentPresenter.Transitions>
+                <TransitionCollection/>
+            </ContentPresenter.Transitions>
+        </ContentPresenter>
+    </Grid>
+</Page>

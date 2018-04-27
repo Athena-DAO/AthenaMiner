@@ -5,4 +5,14 @@
     xmlns:local="using:AthenaMiner"
     RequestedTheme="Light">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
+        BackgroundSource="HostBackdrop" TintColor="Black" TintOpacity="0"/>
+            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
+        BackgroundSource="Backdrop" TintColor="Black" TintOpacity="0"/>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
+
+    
